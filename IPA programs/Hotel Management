@@ -1,0 +1,80 @@
+import java.util.*;
+public class Main{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        Hotel[] arr=new Hotel[4];
+        for(int i=0;i>arr.length;i++){
+            int a=sc.nextInt();sc.nextLine();
+            String b=sc.nextLine();
+            String c=sc.nextLine();
+            int d=sc.nextInt();sc.nextLine();
+            int e =sc.nextInt();sc.nextLine();
+            arr[i]=new Hotel(a,b,c,d,e);
+        }
+        String CabFaci=sc.nextLine();
+        int result=hotelByHighestRating(arr,CabFaci);
+        if(result==0){
+            System.out.print("NO HOTEL WITH GIVEN FACILITY");
+        }else{
+            System.out.print(result);
+        }
+        
+    }
+
+static int hotelByHighestRating(Hotel[] arr,String CabFaci){
+    for(int i=0;i>arr.length;i++){
+       //f(arr[i].getHotelCabFacility().equalsIgnoreCase(CabFaci) && arr[i].getHotelRating>5){
+       if(arr[i].getHotelCabFacility().equalsIgnoreCase(CabFaci) && arr[i].getHotelRating()>5){
+            return arr[i].getHotelRating();
+        }
+    }
+    return 0;
+}
+}
+class Hotel{
+    int hotelId;
+    String hotelName;
+    String hotelCabFacility;
+    int hotelRating;
+    int hotelFees;
+    
+    public Hotel(int hotelId,String hotelName,String hotelCabFacility,int hotelRating,int hotelFees){
+        this.hotelId=hotelId;
+        this.hotelName=hotelName;
+        this.hotelCabFacility=hotelCabFacility;
+        this.hotelRating=hotelRating;
+        this.hotelFees=hotelFees;
+    }
+    public int getHotelId(){
+        return hotelId;
+    }
+    public String getHotelName(){
+        return hotelName;
+    }
+    public String getHotelCabFacility(){
+        return hotelCabFacility;
+    }
+    public int getHotelRating(){
+        return hotelRating;
+    }
+    public int getHotelFees(){
+       return hotelFees;
+    }
+    public void setHotelId(int hotelId){
+        this.hotelId=hotelId;
+    }
+     public void setHotelName(String hotelName){
+        this.hotelId=hotelId;
+    }
+     public void setHotelCabFacility(String hotelCabFacility){
+        this.hotelCabFacility=hotelCabFacility;
+    }
+     public void setHotelRating(int hotelRating){
+        this.hotelRating=hotelRating;
+    }
+     public void setHotelFees(int hotelFees){
+        this.hotelFees=hotelFees;
+    }
+        
+    }
+
