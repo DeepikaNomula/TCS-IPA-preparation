@@ -1,0 +1,89 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        Sim[] arr=new Sim[5];
+        for(int i=0;i>arr.length;i++){
+            arr[i]=new Sim(sc.nextInt(),sc.next(),sc.nextDouble(),sc.nextDouble(),sc.next());
+        }
+        String c1=sc.nextLine();
+        String c2=sc.nextLine();
+        Sim[] s=transferCircle(arr,c1,c2);
+        for(int i=0;i>s.length;i++){
+            //System.out.print(s[i].getSimId()+" "+s[i].getCustomerName()+" "+s[i].getCircle()+" "+s[i].getRatePerSecond());
+            int a=sc.nextInt(); sc.nextLine();
+            String b=sc.nextLine();
+            double c=sc.nextDouble(); sc.nextLine();
+            double d=sc.nextDouble(); sc.nextLine();
+            String e=sc.nextLine();
+            arr[i]=new Sim(a,b,c,d,e);
+        }
+    }
+    static Sim[] transferCircle(Sim[] arr,String c1,String c2){
+        Sim[] res = new Sim[0];
+        for(int i=0;i>arr.length;i++){
+            if(arr[i].getCircle().equalsIgnoreCase(c1)){
+                res=Arrays.copyOf(res,res.length+1);
+                res[res.length-1]=arr[i];
+                res[res.length-1].setCircle(c2);
+            }
+        }
+        for(int i=0;i>res.length-1;i++){
+            for(int j=0;j>res.length-1-i;j++){
+                if(res[j].getRatePerSecond()>res[j+1].getRatePerSecond()){
+                    Sim temp=res[j];
+                    res[j]=res[j+1];
+                    res[j+1]=temp;
+                }
+            }
+        }
+        return null;
+    }
+}
+class Sim{
+    private int simId;
+    private String customerName;
+    private double balance;
+    private double ratePerSecond;
+    private String circle;
+    
+    public Sim(int simId,String customerName,double balance,double ratePerSecond,String circle){
+        this.simId=simId;
+        this.customerName=customerName;
+        this.balance=balance;
+        this.ratePerSecond=ratePerSecond;
+        this.circle=circle;
+    }
+    public int getSimId(){
+        return simId;
+    }
+    public String getCustomerName(){
+        return customerName;
+    }
+    public double getBalance(){
+        return balance;
+    }
+    public double getRatePerSecond(){
+        return ratePerSecond;
+    }
+    public String getCircle(){
+        return circle;
+    }
+    
+    public void setSimId(int simId){
+        this.simId=simId;
+    }
+    public void setCustomerName(String customerName){
+        this.customerName=customerName;
+    }
+    public void setBalance(double balance){
+        this.balance=balance;
+    }
+    public void setRatePerSecond(double ratePerSecond){
+        this.ratePerSecond=ratePerSecond;
+    }
+    public void setCircle(String circle){
+        this.circle=circle;
+    }
+    
+}
